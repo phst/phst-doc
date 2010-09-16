@@ -12,58 +12,59 @@
 
 (TeX-add-style-hook
  "phst-doc"
- (lambda ()
-   (TeX-run-style-hooks
-    "etex" "expl3" "ltxdoc" "xparse"
-    "amsmath" "amsfonts"
-    "lmodern" "fontenc" "inputenc"
-    "xspace" "geometry" "xcolor" "graphicx"
-    "booktabs" "microtype"
-    "hypdoc")
-   (TeX-add-symbols
-    "eg" "ie" "etc"
-    '("env" TeX-arg-environment)
-    "idxformat"
-    '("docindex" [ "Key" ] t)
-    '("cls" "Class")
-    '("pkg" "Package")
-    '("fnt" "Font")
-    '("tool" "Program")
-    '("SpecialMainMemberIndex" 3)
-    '("SpecialMemberIndex" 3)
-    '("msg" "LaTeX 3 message")
-    '("opt" "Option")
-    '("objtype" "LaTeX 3 object type")
-    '("template" "LaTeX 3 template")
-    '("instance" "LaTeX 3 template instance")
-    '("DescribeMessage" "LaTeX 3 message")
-    '("DescribeOption" "Option")
-    '("DescribeObjectType" "LaTeX 3 object type")
-    '("DescribeTemplate" "LaTeX 3 template")
-    '("DescribeInstance" "LaTeX 3 template instance")
-    "pdfTeX" "MikTeX" "TeXLive"
-    '("vietnamese" t)
-    '("genname" [ "Index key" ] "Index entry" t)
-    '("nametext" "Last name" "First name")
-    '("nameindex" "Last name" "First name")
-    '("name" "Last name" "First name")
-    '("extname" TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
-    '("NewName" TeX-define-macro "Last name" "First name")
-    '("NewExtName" TeX-define-macro TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
-    "Knuth" "Arseneau" "Hogholm" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Thanh"
-    "dbdefault" "lcdefault"
-    "dbseries" "lcseries"
-    '("textdb" t)
-    '("PrintDescribeMember" "Member name")
-    '("PrintMemberName" "Member name")
-    '("tblhead" t)
-    '("tlbmath" t))
-   (LaTeX-add-environments
-    '("l3message" "LaTeX 3 message")
-    '("option" "Option")
-    '("l3objtype" "LaTeX 3 object type")
-    '("l3template" "LaTeX 3 template")
-    '("l3instance" "LaTeX 3 template instance")
-    '("doctable" "Label" [ "Short caption" ] "Caption" "Column definition")
-    '("narrowtable" "Label" [ "Short caption" ] "Caption" "Column definition")
-    '("docfigure" "Label" [ "Short caption" ] "Caption"))))
+ (function
+  (lambda ()
+    (TeX-run-style-hooks
+     "etex" "expl3" "ltxdoc" "xparse"
+     "amsmath" "amsfonts"
+     "lmodern" "fontenc" "inputenc"
+     "xspace" "geometry" "xcolor" "graphicx"
+     "booktabs" "microtype"
+     "hypdoc")
+    (TeX-add-symbols
+     "eg" "ie" "etc"
+     '("env" TeX-arg-environment)
+     "idxformat"
+     '("docindex" ["Key"] t)
+     '("cls" "Class")
+     '("pkg" "Package")
+     '("fnt" "Font")
+     '("tool" "Program")
+     '("SpecialMainMemberIndex" 3)
+     '("SpecialMemberIndex" 3)
+     '("msg" "LaTeX 3 message")
+     '("opt" "Option")
+     '("objtype" "LaTeX 3 object type")
+     '("template" "LaTeX 3 template")
+     '("instance" "LaTeX 3 template instance")
+     '("DescribeMessage" "LaTeX 3 message")
+     '("DescribeOption" "Option")
+     '("DescribeObjectType" "LaTeX 3 object type")
+     '("DescribeTemplate" "LaTeX 3 template")
+     '("DescribeInstance" "LaTeX 3 template instance")
+     "pdfTeX" "MikTeX" "TeXLive"
+     '("vietnamese" t)
+     '("genname" [ "Index key" ] "Index entry" t)
+     '("nametext" "Last name" "First name")
+     '("nameindex" "Last name" "First name")
+     '("name" "Last name" "First name")
+     '("extname" TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
+     '("NewName" TeX-define-macro "Last name" "First name")
+     '("NewExtName" TeX-define-macro TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
+     "Knuth" "Arseneau" "Hogholm" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Thanh"
+     "dbdefault" "lcdefault"
+     "dbseries" "lcseries"
+     '("textdb" t)
+     '("PrintDescribeMember" "Member name")
+     '("PrintMemberName" "Member name")
+     '("tblhead" t)
+     '("tlbmath" t))
+    (LaTeX-add-environments
+     '("l3message" "LaTeX 3 message")
+     '("option" "Option")
+     '("l3objtype" "LaTeX 3 object type")
+     '("l3template" "LaTeX 3 template")
+     '("l3instance" "LaTeX 3 template instance")
+     '("doctable" "Label" ["Short caption"] "Caption" "Column definition")
+     '("narrowtable" "Label" ["Short caption"] "Caption" "Column definition")
+     '("docfigure" "Label" ["Short caption"] "Caption"))))
