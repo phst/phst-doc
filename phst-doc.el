@@ -67,4 +67,4 @@
      '("l3instance" "LaTeX 3 template instance")
      '("doctable" "Label" ["Short caption"] "Caption" "Column definition")
      '("narrowtable" "Label" ["Short caption"] "Caption" "Column definition")
-     '("docfigure" "Label" ["Short caption"] "Caption"))))
+     '("docfigure" "Label" ["Short caption"] "Caption")))))
