@@ -321,21 +321,20 @@
 \tl_new:N \l_phstdoc_label_tl
 \tl_new:N \l_phstdoc_caption_tl
 \NewDocumentEnvironment { doctable } { m o m m } {
-  \tl_set:Nn \l_phstdoc_label_tl { \label{#1} }
-  \IfValueTF { #2 } {
-    \tl_set:Nn \l_phstdoc_caption_tl { \caption[#2]{#3} }
-  } {
-    \tl_set:Nn \l_phstdoc_caption_tl { \caption    {#3} }
-  }
   \table
   \centering
   \tabular{#4}
+  \toprule
 } {
   \tabularnewline
   \bottomrule
   \endtabular
-  \l_phstdoc_caption_tl
-  \l_phstdoc_label_tl
+  \IfValueTF { #2 } {
+    \caption[#2]{#3}
+  } {
+    \caption    {#3}
+  }
+  \label{#1}
   \endtable
 }
 \NewDocumentEnvironment { narrowtable } { } {
@@ -348,17 +347,15 @@
 
 % special figures
 \NewDocumentEnvironment { docfigure } { m o m } {
-  \tl_set:Nn \l_phstdoc_label_tl { \label{#1} }
-  \IfValueTF { #2 } {
-    \tl_set:Nn \l_phstdoc_caption_tl { \caption[#2]{#3} }
-  } {
-    \tl_set:Nn \l_phstdoc_caption_tl { \caption    {#3} }
-  }
   \figure
   \centering
 } {
-  \l_phstdoc_label_tl
-  \l_phstdoc_caption_tl
+  \IfValueTF { #2 } {
+    \caption[#2]{#3}
+  } {
+    \caption    {#3}
+  }
+  \label{#1}
   \endfigure
 }
 
