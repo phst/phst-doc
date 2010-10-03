@@ -52,9 +52,9 @@
      '("NewName" TeX-define-macro "Last name" "First name")
      '("NewExtName" TeX-define-macro TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
      "Knuth" "Arseneau" "Hogholm" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Thanh"
-     "dbdefault" "lcdefault"
-     "dbseries" "lcseries"
-     '("textdb" t)
+     "bndefault" "lcdefault"
+     "bnseries" "lcseries"
+     '("textbn" t)
      '("PrintDescribeMember" "Member name")
      '("PrintMemberName" "Member name")
      '("tblhead" t)

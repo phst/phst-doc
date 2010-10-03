@@ -238,9 +238,9 @@
 \NewExtName \Thanh {\vietnamese}{Thành}{Thanh}{Hàn Thế}{Han The}
 
 % boldface, normal width
-\tl_new:Nn \dbdefault { b }
-\NewDocumentCommand \dbseries { } { \fontseries\dbdefault \selectfont }
-\DeclareTextFontCommand \textdb \dbseries
+\tl_new:Nn \bndefault { b }
+\NewDocumentCommand \bnseries { } { \fontseries\bndefault \selectfont }
+\DeclareTextFontCommand \textbn \bnseries
 
 % light condensed monospaced
 \tl_new:Nn \lcdefault { lc }
