@@ -19,10 +19,11 @@
      "amsmath" "amsfonts"
      "lmodern" "fontenc" "inputenc"
      "xspace" "geometry" "xcolor" "graphicx"
-     "booktabs" "microtype"
+     "booktabs" "hologo" "microtype"
      "hypdoc")
     (TeX-add-symbols
      "eg" "ie" "etc"
+     '("mail" t)
      '("env" TeX-arg-environment)
      "idxformat"
      '("docindex" ["Key"] t)
@@ -51,7 +52,7 @@
      '("extname" TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
      '("NewName" TeX-define-macro "Last name" "First name")
      '("NewExtName" TeX-define-macro TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
-     "Knuth" "Arseneau" "Hogholm" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Thanh"
+     "Knuth" "Arseneau" "Hogholm" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Thanh" "Robertson" "MPG"
      "bndefault" "lcdefault"
      "bnseries" "lcseries"
      '("textbn" t)

@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{etex}
 \RequirePackage{expl3}
-\ProvidesExplClass{phst-doc}{2010/01/29}{0.1}{Documentation class for Philipp Stephani's packages}
+\ProvidesExplClass{phst-doc}{2010/01/29}{0.1}%
+  {Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}
 \RequirePackage{amsmath}
@@ -14,6 +15,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{booktabs}
+\RequirePackage{hologo}
 \RequirePackage{microtype}
 
 % The following line is a hack that prevents loading the thumbpdf package
@@ -26,7 +28,19 @@
 \tl_new:Nn \ie  { i.\,e.\@\xspace }
 \tl_new:Nn \etc { etc.  \@\xspace }
 
+\NewDocumentCommand \mail {m} { \href{mailto:#1}{\nolinkurl{#1}} }
+\RenewDocumentCommand \cmd {m} { \cs { \cs_to_str:N #1 } }
+\RenewDocumentCommand \cs {m} {
+  \group_begin:
+  \tl_set:Nx \l_phstdoc_tmpa_tl { #1 }
+  \texttt { \char`\\ \tl_to_str:N \l_phstdoc_tmpa_tl }
+  \group_end:
+}
 \NewDocumentCommand \env {m} { \texttt{#1} }
+
+\pdfstringdefDisableCommands {
+  \cs_set_nopar:Npn \mail #1 { \tl_to_str:n { #1 } }
+}
 
 % indexing
 \tl_new:Nn \idxformat { \hdpindex{usage} }
@@ -227,14 +241,16 @@
 \NewDocumentCommand \NewExtName { m m m m m m } {
   \NewDocumentCommand #1 { } { \extname{#2}{#3}{#4}{#5}{#6} \xspace }
 }
-\NewName \Knuth    {Knuth}    {Donald \nobreakspace E.}
-\NewName \Arseneau {Arseneau} {Donald}
-\NewName \Hogholm  {Høgholm}  {Morten}
-\NewName \Setzer   {Setzer}   {Nick}
-\NewName \Verna    {Verna}    {Didier}
-\NewName \Wilson   {Wilson}   {Peter}
-\NewName \Kohm     {Kohm}     {Markus}
-\NewName \Marvan   {Marvan}   {Michal}
+\NewName \Knuth     {Knuth}    {Donald \nobreakspace E.}
+\NewName \Arseneau  {Arseneau}   {Donald}
+\NewName \Hogholm   {Høgholm}   {Morten}
+\NewName \Setzer    {Setzer}    {Nick}
+\NewName \Verna     {Verna}     {Didier}
+\NewName \Wilson    {Wilson}    {Peter}
+\NewName \Kohm      {Kohm}      {Markus}
+\NewName \Marvan    {Marvan}    {Michal}
+\NewName \Robertson {Robertson} {Will}
+\NewExtName \MPG {}{Pégourié-Gonnard}{Pegourie-Gonnard}{Manuel}{Manuel}
 \NewExtName \Thanh {\vietnamese}{Thành}{Thanh}{Hàn Thế}{Han The}
 
 % boldface, normal width
