@@ -8,6 +8,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{lmodern}
+\RequirePackage{textcomp}
 \RequirePackage[T5, T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{xspace}
@@ -41,6 +42,33 @@
 \pdfstringdefDisableCommands {
   \cs_set_nopar:Npn \mail #1 { \tl_to_str:n { #1 } }
 }
+
+% allow hyphenation in metavariables
+\RenewDocumentCommand \meta { m } {
+  \mode_if_math:TF { \nfss@text } { \use:n } {
+    \textlangle
+    \group_begin:
+    \meta@font@select
+    #1
+    \/
+    \group_end:
+    \textrangle
+  }
+}
+
+% allow line breaks before and after argument names
+\cs_new_protected_nopar:Nn \phstdoc_renew_arg_cmd:Nnn {
+  \RenewDocumentCommand #1 { m } {
+    \allowbreak
+    \texttt { #2 }
+    \meta { ##1 }
+    \texttt { #3 }
+    \allowbreak
+  }
+}
+\phstdoc_renew_arg_cmd:Nnn \marg {\{} {\}}
+\phstdoc_renew_arg_cmd:Nnn \oarg {[} {]}
+\phstdoc_renew_arg_cmd:Nnn \parg {(} {)}
 
 % indexing
 \tl_new:Nn \idxformat { \hdpindex{usage} }
