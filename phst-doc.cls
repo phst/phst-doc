@@ -294,28 +294,28 @@
   \MacroFont
   \lcseries
   \string #1
-  \space
+  \tex_space:D
 }
 \RenewDocumentCommand \HDorg@PrintMacroName { m } {
   \strut
   \MacroFont
   \lcseries
   \string #1
-  \space
+  \tex_space:D
 }
 \RenewDocumentCommand \PrintDescribeEnv { m } {
   \strut
   \MacroFont
   \lcseries
   #1
-  \space
+  \tex_space:D
 }
 \RenewDocumentCommand \PrintEnvName { m } {
   \strut
   \MacroFont
   \lcseries
   #1
-  \space
+  \tex_space:D
 }
 \NewDocumentCommand \PrintDescribeMember { m } {
   \strut
@@ -323,7 +323,7 @@
   \MacroFont
   \lcseries
   #1
-  \space
+  \tex_space:D
 }
 \NewDocumentCommand \PrintMemberName { m } {
   \strut
@@ -331,7 +331,7 @@
   \MacroFont
   \lcseries
   #1
-  \space
+  \tex_space:D
 }
 \cs_set_nopar:Npn \HDorg@theCodelineNo {
   \normalfont
