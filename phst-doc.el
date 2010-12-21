@@ -25,6 +25,7 @@
      "eg" "ie" "etc"
      '("mail" t)
      '("env" TeX-arg-environment)
+     '("term" t)
      "idxformat"
      '("docindex" ["Key"] t)
      '("cls" "Class")
