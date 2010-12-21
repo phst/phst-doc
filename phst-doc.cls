@@ -38,6 +38,8 @@
   \group_end:
 }
 \NewDocumentCommand \env {m} { \texttt{#1} }
+\definecolor { term } { rgb } { 0.22, 0.58, 0.09 }
+\NewDocumentCommand \term {m} { \textcolor{term}{\meta{#1}} }
 
 \pdfstringdefDisableCommands {
   \cs_set_nopar:Npn \mail #1 { \tl_to_str:n { #1 } }
