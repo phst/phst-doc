@@ -271,8 +271,8 @@
 \NewDocumentCommand \NewExtName { m m m m m m } {
   \NewDocumentCommand #1 { } { \extname{#2}{#3}{#4}{#5}{#6} \xspace }
 }
-\NewName \Knuth     {Knuth}    {Donald \nobreakspace E.}
-\NewName \Arseneau  {Arseneau}   {Donald}
+\NewName \Knuth     {Knuth}     {Donald \nobreakspace E.}
+\NewName \Arseneau  {Arseneau}  {Donald}
 \NewName \Hogholm   {Høgholm}   {Morten}
 \NewName \Setzer    {Setzer}    {Nick}
 \NewName \Verna     {Verna}     {Didier}
@@ -280,7 +280,7 @@
 \NewName \Kohm      {Kohm}      {Markus}
 \NewName \Marvan    {Marvan}    {Michal}
 \NewName \Robertson {Robertson} {Will}
-\NewExtName \MPG {}{Pégourié-Gonnard}{Pegourie-Gonnard}{Manuel}{Manuel}
+\NewName \MPG {Pégourié-Gonnard}{Manuel}
 \NewExtName \Thanh {\vietnamese}{Thành}{Thanh}{Hàn Thế}{Han The}
 
 % boldface, normal width
@@ -364,9 +364,7 @@
 % special tables
 \NewDocumentCommand \tblhead { m } { \hfil \textbf{#1} \hfil }
 \NewDocumentCommand \tblmath { m } { \( #1 \vphantom{\underline{\overline{#1}}} \) }
-\tl_new:N \l_phstdoc_label_tl
-\tl_new:N \l_phstdoc_caption_tl
-\NewDocumentEnvironment { doctable } { m o m m } {
+\NewDocumentEnvironment { doctable } { m o +m m } {
   \table
   \centering
   \tabular{#4}
