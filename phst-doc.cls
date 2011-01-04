@@ -1,12 +1,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{etex}
 \RequirePackage{expl3}
-\ProvidesExplClass{phst-doc}{2010/01/29}{0.1}%
-  {Documentation class for Philipp Stephani's packages}
+\ProvidesExplClass{phst-doc}{2011/01/03}{0.1}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}
+\RequirePackage{etoolbox}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
+\RequirePackage{mathtools}
 \RequirePackage{lmodern}
 \RequirePackage{textcomp}
 \RequirePackage[T5, T1]{fontenc}
@@ -16,6 +17,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{booktabs}
+\RequirePackage{csquotes}
 \RequirePackage{hologo}
 \RequirePackage{microtype}
 
@@ -23,6 +25,16 @@
 \tl_new:N \THB@name
 
 \RequirePackage{hypdoc}
+
+% scratch variables
+\tl_new:N \l_phstdoc_tmpa_tl
+\tl_new:N \l_phstdoc_tmpb_tl
+
+% additional xspace exceptions
+\group_begin:
+\char_make_other:n { `\~ }
+\xspaceaddexceptions { ~ ^^e2 }  % 0xE2 is the first UTF-8 octet of the right quote ’
+\group_end:
 
 % abbreviations
 \tl_new:Nn \eg  { e.\,g.\@\xspace }
@@ -32,10 +44,12 @@
 \NewDocumentCommand \mail {m} { \href{mailto:#1}{\nolinkurl{#1}} }
 \RenewDocumentCommand \cmd {m} { \cs { \cs_to_str:N #1 } }
 \RenewDocumentCommand \cs {m} {
-  \group_begin:
-  \tl_set:Nx \l_phstdoc_tmpa_tl { #1 }
-  \texttt { \char`\\ \tl_to_str:N \l_phstdoc_tmpa_tl }
-  \group_end:
+  \protected@edef \l_phstdoc_tmpa_tl { #1 }
+  \tl_set_rescan:Nno \l_phstdoc_tmpb_tl {
+    \char_make_other:N \:
+    \char_make_other:N \_
+  } \l_phstdoc_tmpa_tl
+  \texttt { \char`\\ \l_phstdoc_tmpb_tl }
 }
 \NewDocumentCommand \env {m} { \texttt{#1} }
 \definecolor { term } { rgb } { 0.22, 0.58, 0.09 }
@@ -48,6 +62,7 @@
 % allow hyphenation in metavariables
 \RenewDocumentCommand \meta { m } {
   \mode_if_math:TF { \nfss@text } { \use:n } {
+    \nobreak \skip_horizontal:N \c_zero_skip
     \textlangle
     \group_begin:
     \meta@font@select
@@ -121,8 +136,45 @@
 \phstdoc_new_unit_type:nNN  {font}            \fnt  \textsf
 \phstdoc_new_unit_type:nNN  {tool}            \tool \texttt
 
+% definitions
+% <singular name> <plural name> <format cmd> <describe cmd>
+\cs_new_protected_nopar:Nn \phstdoc_new_definition_type:nnNN {
+  \NewDocumentCommand #4 { m } {
+    \leavevmode
+    \@bsphack
+    \marginpar {
+      \raggedleft
+      \PrintDescribeDefinition #3 { ##1 }
+    }
+    \SpecialDefinitionIndex { #1 } { #2 } #3 { ##1 }
+    \@esphack
+    \ignorespaces
+  }
+}
+\cs_new_protected_nopar:Nn \phstdoc_new_definition_type:nNN {
+  \phstdoc_new_definition_type:nnNN { #1 } { #1 s } #2 #3
+}
+\NewDocumentCommand \SpecialDefinitionIndex { m m m m } {
+  \@bsphack
+  \HD@target
+  \index {
+    #4
+    \actualchar \string #3 { #4 } ~ (#1)
+    \encapchar hdclindex{\the\c@HD@hypercount}{usage}
+  }
+  \index {
+    #2 :
+    \levelchar #4
+    \actualchar \string #3 { #4 }
+    \encapchar hdclindex{\the\c@HD@hypercount}{usage}
+  }
+  \@esphack
+}
+
+\phstdoc_new_definition_type:nNN { nonterminal~ symbol } \meta \DescribeNonterminal
+
 % members
-% <singular name> <plural name>  <ref cmd> <describe cmd> <code env>
+% <singular name> <plural name> <ref cmd> <describe cmd> <code env>
 \cs_new_protected_nopar:Nn \phstdoc_new_member_type:nnNNn {
   \NewDocumentCommand #3 { m } {
     \texttt { ##1 }
@@ -180,10 +232,10 @@
   \else:
     \int_set:Nn \macro@cnt { \c_one }
   \fi:
-  \tl_set:Nx \l_tmpa_tl {
-    \exp_not:N \item [ \exp_not:N \PrintMemberName{#3} ]
+  \protected@edef \l_phstdoc_tmpa_tl {
+    \exp_not:N \item [ \exp_not:N \PrintMemberName { #3 } ]
   }
-  \l_tmpa_tl
+  \tl_use:N \l_phstdoc_tmpa_tl
   \int_gincr:N \c@CodelineNo
   \SpecialMainMemberIndex { #1 } { #2 } { #3 }
   \nobreak
@@ -222,20 +274,46 @@
   \@esphack
 }
 
-%\tracingonline=1
-%\tracingmacros=2
-%\errorcontextlines=100
-\phstdoc_new_member_type:nNNn {message}       \msg      \DescribeMessage     {l3message}
-\phstdoc_new_member_type:nNNn {option}        \opt      \DescribeOption      {option}
-\phstdoc_new_member_type:nNNn {object ~ type} \objtype  \DescribeObjectType  {l3objtype}
-\phstdoc_new_member_type:nNNn {template}      \template \DescribeTemplate    {l3template}
-\phstdoc_new_member_type:nNNn {instance}      \instance \DescribeInstance    {l3instance}
-%\tracingmacros=0
+\phstdoc_new_member_type:nNNn {message}             \msg      \DescribeMessage     {l3message}
+\phstdoc_new_member_type:nNNn {option}              \opt      \DescribeOption      {option}
+\phstdoc_new_member_type:nNNn {object~ type}        \objtype  \DescribeObjectType  {l3objtype}
+\phstdoc_new_member_type:nNNn {template}            \template \DescribeTemplate    {l3template}
+\phstdoc_new_member_type:nNNn {instance}            \instance \DescribeInstance    {l3instance}
+
+% multiple macros in margin
+\NewDocumentCommand \DescribeMacros { } {
+  \leavevmode
+  \@bsphack
+  \group_begin:
+  \MakePrivateLetters
+  \phstdoc_describe_macros:n
+}
+\bool_new:N \l_phstdoc_first_bool
+\box_new:N \l_phstdoc_comma_box
+\cs_new_protected_nopar:Nn \phstdoc_describe_macros:n {
+  \group_end:
+  \marginpar {
+    \raggedleft
+    \hbox_set:Nn \l_phstdoc_comma_box { , ~ }
+    \bool_set_true:N \l_phstdoc_first_bool
+    \tl_map_inline:nn { #1 } {
+      \bool_if:NTF \l_phstdoc_first_bool {
+        \bool_set_false:N \l_phstdoc_first_bool
+      } {
+        \unskip
+        \discretionary { } { } { \box_use:N \l_phstdoc_comma_box }
+      }
+      \PrintDescribeMacro { ##1 }
+    }
+  }
+  \tl_map_function:nN { #1 } \SpecialUsageIndex
+  \@esphack
+  \ignorespaces
+}
 
 % product names
-\NewDocumentCommand \pdfTeX     { } { pdf \TeX                    \xspace }
-\NewDocumentCommand \MiKTeX     { } { MiK \TeX                    \xspace }
-\NewDocumentCommand    \TeXLive { } {     \TeX \nobreakspace Live \xspace }
+\NewDocumentCommand \MiKTeX  { } { MiK \TeX \xspace }
+\NewDocumentCommand \TeXLive { } { \TeX \nobreakspace Live \xspace }
 
 % persons
 \NewDocumentCommand \vietnamese { m } {
@@ -273,15 +351,15 @@
 }
 \NewName \Knuth     {Knuth}     {Donald \nobreakspace E.}
 \NewName \Arseneau  {Arseneau}  {Donald}
-\NewName \Hogholm   {Høgholm}   {Morten}
 \NewName \Setzer    {Setzer}    {Nick}
 \NewName \Verna     {Verna}     {Didier}
 \NewName \Wilson    {Wilson}    {Peter}
 \NewName \Kohm      {Kohm}      {Markus}
 \NewName \Marvan    {Marvan}    {Michal}
 \NewName \Robertson {Robertson} {Will}
-\NewName \MPG {Pégourié-Gonnard}{Manuel}
-\NewExtName \Thanh {\vietnamese}{Thành}{Thanh}{Hàn Thế}{Han The}
+\NewExtName \Hogholm {\use:n}      {Høgholm}          {Hogholm}          {Morten}  {Morten}
+\NewExtName \MPG     {\use:n}      {Pégourié-Gonnard} {Pegourie-Gonnard} {Manuel}  {Manuel}
+\NewExtName \Thanh   {\vietnamese} {Thành}            {Thanh}            {Hàn Thế} {Han The}
 
 % boldface, normal width
 \tl_new:Nn \bndefault { b }
@@ -317,6 +395,12 @@
   \MacroFont
   \lcseries
   #1
+  \tex_space:D
+}
+\NewDocumentCommand \PrintDescribeDefinition { m m } {
+  \strut
+  \HD@target
+  #1 { #2 }
   \tex_space:D
 }
 \NewDocumentCommand \PrintDescribeMember { m } {

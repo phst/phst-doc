@@ -1,4 +1,4 @@
-;; Copyright (C) 2010 by Philipp Stephani <st_philipp@yahoo.de>
+;; Copyright (C) 2010, 2011 by Philipp Stephani <st_philipp@yahoo.de>
 ;;
 ;; This file may be distributed and/or modified under the
 ;; conditions of the LaTeX Project Public License, either
@@ -32,6 +32,8 @@
      '("pkg" "Package")
      '("fnt" "Font")
      '("tool" "Program")
+     '("SpecialDefinitionIndex" t t TeX-arg-macro t)
+     '("DescribeNonterminal" "Nonterminal symbol")
      '("SpecialMainMemberIndex" 3)
      '("SpecialMemberIndex" 3)
      '("msg" "LaTeX 3 message")
@@ -44,7 +46,8 @@
      '("DescribeObjectType" "LaTeX 3 object type")
      '("DescribeTemplate" "LaTeX 3 template")
      '("DescribeInstance" "LaTeX 3 template instance")
-     "pdfTeX" "MikTeX" "TeXLive"
+     '("DescribeMacros" t)
+     "MikTeX" "TeXLive"
      '("vietnamese" t)
      '("genname" [ "Index key" ] "Index entry" t)
      '("nametext" "Last name" "First name")
@@ -57,6 +60,7 @@
      "bndefault" "lcdefault"
      "bnseries" "lcseries"
      '("textbn" t)
+     '("PrintDescribeDefinition" TeX-arg-macro "Definition name")
      '("PrintDescribeMember" "Member name")
      '("PrintMemberName" "Member name")
      '("tblhead" t)
