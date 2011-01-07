@@ -26,6 +26,11 @@
 
 \RequirePackage{hypdoc}
 
+% fix bug in hologo package
+\cs_if_exist:cF { HOLOGO@ReflectBox@ \hologodriver } {
+  \tl_new:c { HOLOGO@ReflectBox@ \hologodriver }
+}
+
 % scratch variables
 \tl_new:N \l_phstdoc_tmpa_tl
 \tl_new:N \l_phstdoc_tmpb_tl
