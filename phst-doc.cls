@@ -8,10 +8,16 @@
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{mathtools}
-\RequirePackage{lmodern}
-\RequirePackage{textcomp}
-\RequirePackage[T5, T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
+
+\luatex_if_engine:TF {
+  \RequirePackage{fontspec}
+} {
+  \RequirePackage{lmodern}
+  \RequirePackage{textcomp}
+  \RequirePackage[T5, T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+}
+
 \RequirePackage{xspace}
 \RequirePackage[includemp=true, hmargin=20mm, vmargin=35mm, marginparwidth=40mm]{geometry}
 \RequirePackage{xcolor}
@@ -38,7 +44,11 @@
 % additional xspace exceptions
 \group_begin:
 \char_make_other:n { `\~ }
-\xspaceaddexceptions { ~ ^^e2 }  % 0xE2 is the first UTF-8 octet of the right quote ’
+\luatex_if_engine:TF {
+  \xspaceaddexceptions { ~ ’ }
+} {
+  \xspaceaddexceptions { ~ ^^e2 }  % 0xE2 is the first UTF-8 octet of the right quote ’
+}
 \group_end:
 
 % abbreviations
@@ -62,6 +72,11 @@
 
 \pdfstringdefDisableCommands {
   \cs_set_nopar:Npn \mail #1 { \tl_to_str:n { #1 } }
+}
+
+\luatex_if_engine:T {
+  \NewDocumentCommand \textlangle { } { 〈 }
+  \NewDocumentCommand \textrangle { } { 〉 }
 }
 
 % allow hyphenation in metavariables
@@ -321,12 +336,16 @@
 \NewDocumentCommand \TeXLive { } { \TeX \nobreakspace Live \xspace }
 
 % persons
-\NewDocumentCommand \vietnamese { m } {
-  \group_begin:
-  \fontencoding { T5 }
-  \selectfont
-  #1
-  \group_end:
+\luatex_if_engine:TF {
+  \NewDocumentCommand \vietnamese { m } { #1 }
+} {
+  \NewDocumentCommand \vietnamese { m } {
+    \group_begin:
+    \fontencoding { T5 }
+    \selectfont
+    #1
+    \group_end:
+  }
 }
 \NewDocumentCommand \genname { o m m } {
   #3
@@ -490,6 +509,10 @@
   }
   \label{#1}
   \endfigure
+}
+
+\luatex_if_engine:T {
+  \setmainfont { Latin~ Modern~ Roman }
 }
 
 \setcounter{IndexColumns}{2}

@@ -15,11 +15,12 @@
  (function
   (lambda ()
     (TeX-run-style-hooks
-     "etex" "expl3" "ltxdoc" "xparse"
-     "amsmath" "amsfonts"
-     "lmodern" "fontenc" "inputenc"
+     "etex" "expl3" "ltxdoc" "xparse" "etoolbox"
+     "amsmath" "amsfonts" "mathtools"
+     "fontspec"
+     "lmodern" "textcomp" "fontenc" "inputenc"
      "xspace" "geometry" "xcolor" "graphicx"
-     "booktabs" "hologo" "microtype"
+     "booktabs" "csquotes" "hologo" "microtype"
      "hypdoc")
     (TeX-add-symbols
      "eg" "ie" "etc"
@@ -56,7 +57,7 @@
      '("extname" TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
      '("NewName" TeX-define-macro "Last name" "First name")
      '("NewExtName" TeX-define-macro TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
-     "Knuth" "Arseneau" "Hogholm" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Thanh" "Robertson" "MPG"
+     "Knuth" "Arseneau" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Robertson" "Hogholm" "MPG" "Thanh"
      "bndefault" "lcdefault"
      "bnseries" "lcseries"
      '("textbn" t)
