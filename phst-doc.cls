@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{etex}
 \RequirePackage{expl3}
-\ProvidesExplClass{phst-doc}{2011/01/03}{0.1}{Documentation class for Philipp Stephani's packages}
+\ProvidesExplClass{phst-doc}{2011/05/04}{0.1}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}
 \RequirePackage{etoolbox}
@@ -56,17 +56,21 @@
 \tl_new:Nn \ie  { i.\,e.\@\xspace }
 \tl_new:Nn \etc { etc.  \@\xspace }
 
-\NewDocumentCommand \mail {m} { \href{mailto:#1}{\nolinkurl{#1}} }
-\RenewDocumentCommand \cmd {m} { \cs { \cs_to_str:N #1 } }
-\RenewDocumentCommand \cs {m} {
+\cs_new_protected_nopar:Nn \phstdoc_print:n {
   \protected@edef \l_phstdoc_tmpa_tl { #1 }
   \tl_set_rescan:Nno \l_phstdoc_tmpb_tl {
     \char_make_other:N \:
     \char_make_other:N \_
   } \l_phstdoc_tmpa_tl
-  \texttt { \char`\\ \l_phstdoc_tmpb_tl }
+  \texttt { \l_phstdoc_tmpb_tl }
 }
-\NewDocumentCommand \env {m} { \texttt{#1} }
+
+\NewDocumentCommand \mail {m} { \href{mailto:#1}{\nolinkurl{#1}} }
+\RenewDocumentCommand \cmd {m} { \cs { \cs_to_str:N #1 } }
+\RenewDocumentCommand \cs {m} {
+  \texttt { \char`\\ \phstdoc_print:n { #1 } }
+}
+\NewDocumentCommand \env {m} { \phstdoc_print:n{#1} }
 \definecolor { term } { rgb } { 0.22, 0.58, 0.09 }
 \NewDocumentCommand \term {m} { \textcolor{term}{\meta{#1}} }
 
@@ -197,8 +201,8 @@
 % <singular name> <plural name> <ref cmd> <describe cmd> <code env>
 \cs_new_protected_nopar:Nn \phstdoc_new_member_type:nnNNn {
   \NewDocumentCommand #3 { m } {
-    \texttt { ##1 }
-    \phstdoc_object_index:nnnN { #1 } { #2 } { ##1 } \texttt
+    \phstdoc_print:n { ##1 }
+    \phstdoc_object_index:nnnN { #1 } { #2 } { ##1 } \phstdoc_print:n
   }
   \pdfstringdefDisableCommands {
     \cs_set_eq:NN #3 \use:n
@@ -266,13 +270,13 @@
   \@bsphack
   \special@index {
     #3
-    \actualchar \string\texttt { #3 } ~ (#1)
+    \actualchar \string \phstdoc_print:n { #3 } ~ (#1)
     \encapchar main
   }
   \special@index {
     #2 :
     \levelchar #3
-    \actualchar \string\texttt { #3 }
+    \actualchar \string \phstdoc_print:n { #3 }
     \encapchar main
   }
   \@esphack
@@ -282,13 +286,13 @@
   \HD@target
   \index {
     #3
-    \actualchar \string\texttt { #3 } ~ (#1)
+    \actualchar \phstdoc_print:n { #3 } ~ (#1)
     \encapchar hdclindex{\the\c@HD@hypercount}{usage}
   }
   \index {
     #2 :
     \levelchar #3
-    \actualchar \string\texttt { #3 }
+    \actualchar \phstdoc_print:n { #3 }
     \encapchar hdclindex{\the\c@HD@hypercount}{usage}
   }
   \@esphack
