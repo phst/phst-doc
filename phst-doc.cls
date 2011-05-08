@@ -126,7 +126,7 @@
   \@bsphack
   \index {
     #3
-    \actualchar \string #4 { #3 } ~ #1
+    \actualchar \string #4 { #3 } ~ (#1)
     \encapchar idxformat
   }
   \index {
