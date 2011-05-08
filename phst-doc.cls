@@ -298,11 +298,13 @@
   \@esphack
 }
 
-\phstdoc_new_member_type:nNNn {message}             \msg      \DescribeMessage     {l3message}
-\phstdoc_new_member_type:nNNn {option}              \opt      \DescribeOption      {option}
-\phstdoc_new_member_type:nNNn {object~ type}        \objtype  \DescribeObjectType  {l3objtype}
-\phstdoc_new_member_type:nNNn {template}            \template \DescribeTemplate    {l3template}
-\phstdoc_new_member_type:nNNn {instance}            \instance \DescribeInstance    {l3instance}
+\phstdoc_new_member_type:nNNn {message}      \msg      \DescribeMessage    {l3message}
+\phstdoc_new_member_type:nNNn {option}       \opt      \DescribeOption     {option}
+\phstdoc_new_member_type:nNNn {object~ type} \objtype  \DescribeObjectType {l3objtype}
+\phstdoc_new_member_type:nNNn {template}     \template \DescribeTemplate   {l3template}
+\phstdoc_new_member_type:nNNn {instance}     \instance \DescribeInstance   {l3instance}
+\phstdoc_new_member_type:nNNn {variable}     \var      \DescribeVariable   {variable}
+\phstdoc_new_member_type:nNNn {function}     \func     \DescribeFunction   {function}
 
 % multiple macros in margin
 \NewDocumentCommand \DescribeMacros { } {
