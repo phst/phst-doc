@@ -410,6 +410,8 @@
 \NewName \Kohm      {Kohm}      {Markus}
 \NewName \Marvan    {Marvan}    {Michal}
 \NewName \Robertson {Robertson} {Will}
+\NewName \Breitfeld {Breitfeld} {Peter}
+\NewName \Hoekwater {Taco}      {Hoekwater}
 \NewExtName \Hogholm {\use:n}      {Høgholm}          {Hogholm}          {Morten}  {Morten}
 \NewExtName \MPG     {\use:n}      {Pégourié-Gonnard} {Pegourie-Gonnard} {Manuel}  {Manuel}
 \NewExtName \Thanh   {\vietnamese} {Thành}            {Thanh}            {Hàn Thế} {Han The}
