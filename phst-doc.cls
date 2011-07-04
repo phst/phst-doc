@@ -144,6 +144,26 @@
   \cs_set_eq:NN \phstdoc_object_index:nnnN \use_none:nnnn
 }
 
+% one-column index
+\RenewDocumentEnvironment { theindex } { } {
+  \index@prologue
+  \par
+  \addvspace \multicolsep
+  \IndexParms
+  \cs_set_eq:NN \item \@idxitem
+  \ignorespaces
+} { }
+
+% one-column change list
+\RenewDocumentEnvironment { theglossary } { } {
+  \glossary@prologue
+  \par
+  \addvspace \multicolsep
+  \GlossaryParms
+  \cs_set_eq:NN \item \@idxitem
+  \ignorespaces
+} { }
+
 % units
 % <singular name> <plural name> <ref cmd> <format cmd>
 \cs_new_protected_nopar:Nn \phstdoc_new_unit_type:nnNN {
