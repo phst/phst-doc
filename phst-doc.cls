@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{etex}
 \RequirePackage{expl3}
-\ProvidesExplClass{phst-doc}{2011/05/04}{0.1}{Documentation class for Philipp Stephani's packages}
+\ProvidesExplClass{phst-doc}{2011/07/03}{0.1}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}
 \RequirePackage{etoolbox}
@@ -50,6 +50,9 @@
   \xspaceaddexceptions { ~ ^^e2 }  % 0xE2 is the first UTF-8 octet of the right quote ’
 }
 \group_end:
+
+% non-monospaced URLs
+\urlstyle { same }
 
 % abbreviations
 \tl_new:Nn \eg  { e.\,g.\@\xspace }
