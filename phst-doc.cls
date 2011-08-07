@@ -11,6 +11,7 @@
 
 \luatex_if_engine:TF {
   \RequirePackage{fontspec}
+  \RequirePackage{lualatex-math}
 } {
   \RequirePackage{lmodern}
   \RequirePackage{textcomp}
