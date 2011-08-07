@@ -26,7 +26,7 @@
 \RequirePackage{booktabs}
 \RequirePackage{csquotes}
 \RequirePackage{hologo}
-\RequirePackage{microtype}
+\RequirePackage{microtype}[2011/02/07]
 
 % The following line is a hack that prevents loading the thumbpdf package
 \tl_new:N \THB@name
