@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{etex}
 \RequirePackage{expl3}
-\ProvidesExplClass{phst-doc}{2011/07/03}{0.1}{Documentation class for Philipp Stephani's packages}
+\ProvidesExplClass{phst-doc}{2011/09/18}{0.1a}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}
 \RequirePackage{etoolbox}
@@ -28,6 +28,12 @@
 \RequirePackage{hologo}
 \RequirePackage{microtype}[2011/02/07]
 
+% Add missing functions to l3kernel
+\cs_new_protected_nopar:Nn \phstdoc_tl_new:Nn {
+  \tl_new:N #1
+  \tl_set:Nn #1 { #2 }
+}
+
 % The following line is a hack that prevents loading the thumbpdf package
 \tl_new:N \THB@name
 
@@ -44,7 +50,7 @@
 
 % additional xspace exceptions
 \group_begin:
-\char_make_other:n { `\~ }
+\char_set_catcode_other:n { `\~ }
 \luatex_if_engine:TF {
   \xspaceaddexceptions { ~ ’ }
 } {
@@ -56,15 +62,15 @@
 \urlstyle { same }
 
 % abbreviations
-\tl_new:Nn \eg  { e.\,g.\@\xspace }
-\tl_new:Nn \ie  { i.\,e.\@\xspace }
-\tl_new:Nn \etc { etc.  \@\xspace }
+\tl_const:Nn \eg  { e.\,g.\@\xspace }
+\tl_const:Nn \ie  { i.\,e.\@\xspace }
+\tl_const:Nn \etc { etc.  \@\xspace }
 
 \cs_new_protected_nopar:Nn \phstdoc_print:n {
   \protected@edef \l_phstdoc_tmpa_tl { #1 }
   \tl_set_rescan:Nno \l_phstdoc_tmpb_tl {
-    \char_make_other:N \:
-    \char_make_other:N \_
+    \char_set_catcode_other:N \:
+    \char_set_catcode_other:N \_
   } \l_phstdoc_tmpa_tl
   \texttt { \l_phstdoc_tmpb_tl }
 }
@@ -116,7 +122,7 @@
 \phstdoc_renew_arg_cmd:Nnn \parg {(} {)}
 
 % indexing
-\tl_new:Nn \idxformat { \hdpindex{usage} }
+\phstdoc_tl_new:Nn \idxformat { \hdpindex{usage} }
 \NewDocumentCommand \docindex { o m } {
   \@bsphack
   \IfValueTF { #1 } {
@@ -418,12 +424,12 @@
 \NewExtName \Thanh   {\vietnamese} {Thành}            {Thanh}            {Hàn Thế} {Han The}
 
 % boldface, normal width
-\tl_new:Nn \bndefault { b }
+\phstdoc_tl_new:Nn \bndefault { b }
 \NewDocumentCommand \bnseries { } { \fontseries\bndefault \selectfont }
 \DeclareTextFontCommand \textbn \bnseries
 
 % light condensed monospaced
-\tl_new:Nn \lcdefault { lc }
+\phstdoc_tl_new:Nn \lcdefault { lc }
 \NewDocumentCommand \lcseries { } { \fontseries\lcdefault \selectfont }
 \RenewDocumentCommand \HDorg@PrintDescribeMacro { m } {
   \strut
