@@ -25,7 +25,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{booktabs}
 \RequirePackage{csquotes}
-\RequirePackage{hologo}
+\RequirePackage{hologo}[2011/11/22]
 \RequirePackage{microtype}[2011/02/07]
 
 % Add missing functions to l3kernel
@@ -38,11 +38,6 @@
 \tl_new:N \THB@name
 
 \RequirePackage{hypdoc}
-
-% fix bug in hologo package
-\cs_if_exist:cF { HOLOGO@ReflectBox@ \hologodriver } {
-  \tl_new:c { HOLOGO@ReflectBox@ \hologodriver }
-}
 
 % scratch variables
 \tl_new:N \l_phstdoc_tmpa_tl
