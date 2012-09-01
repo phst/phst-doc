@@ -3,7 +3,7 @@
 \RequirePackage{expl3}
 \ProvidesExplClass{phst-doc}{2011/09/18}{0.1a}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
-\RequirePackage{xparse}
+\RequirePackage{xparse}[2012/08/29]
 \RequirePackage{etoolbox}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
