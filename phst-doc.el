@@ -57,7 +57,7 @@
      '("extname" TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
      '("NewName" TeX-define-macro "Last name" "First name")
      '("NewExtName" TeX-define-macro TeX-arg-macro "Last name" "Index key for last name" "First name" "Index key for first name")
-     "Knuth" "Arseneau" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Robertson" "Hogholm" "MPG" "Thanh"
+     "Knuth" "Arseneau" "Setzer" "Verna" "Wilson" "Kohm" "Marvan" "Robertson" "Hogholm" "MPG" "Thanh" "Burnol"
      "bndefault" "lcdefault"
      "bnseries" "lcseries"
      '("textbn" t)

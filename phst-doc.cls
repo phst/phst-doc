@@ -414,9 +414,10 @@
 \NewName \Robertson {Robertson} {Will}
 \NewName \Breitfeld {Breitfeld} {Peter}
 \NewName \Hoekwater {Taco}      {Hoekwater}
-\NewExtName \Hogholm {\use:n}      {Høgholm}          {Hogholm}          {Morten}  {Morten}
-\NewExtName \MPG     {\use:n}      {Pégourié-Gonnard} {Pegourie-Gonnard} {Manuel}  {Manuel}
-\NewExtName \Thanh   {\vietnamese} {Thành}            {Thanh}            {Hàn Thế} {Han The}
+\NewExtName \Hogholm {\use:n}      {Høgholm}          {Hogholm}          {Morten}        {Morten}
+\NewExtName \MPG     {\use:n}      {Pégourié-Gonnard} {Pegourie-Gonnard} {Manuel}        {Manuel}
+\NewExtName \Thanh   {\vietnamese} {Thành}            {Thanh}            {Hàn Thế}       {Han The}
+\NewExtName \Burnol  {\use:n}      {Burnol}           {Burnol}           {Jean-François} {Jean-Francois}
 
 % boldface, normal width
 \phstdoc_tl_new:Nn \bndefault { b }
