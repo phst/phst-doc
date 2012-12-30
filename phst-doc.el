@@ -19,7 +19,7 @@
      "amsmath" "amsfonts" "mathtools"
      "fontspec"
      "lmodern" "textcomp" "fontenc" "inputenc"
-     "xspace" "geometry" "xcolor" "graphicx"
+     "xspace" "comment" "babel" "geometry" "xcolor" "graphicx"
      "booktabs" "csquotes" "hologo" "microtype"
      "hypdoc")
     (TeX-add-symbols
@@ -74,4 +74,8 @@
      '("l3instance" "LaTeX 3 template instance")
      '("doctable" "Label" ["Short caption"] "Caption" "Column definition")
      '("narrowtable" "Label" ["Short caption"] "Caption" "Column definition")
-     '("docfigure" "Label" ["Short caption"] "Caption")))))
+     '("docfigure" "Label" ["Short caption"] "Caption"))
+    (mapc (lambda (env)
+            (LaTeX-add-environments env)
+            (add-to-list 'LaTeX-indent-environment-list (list env 'current-indentation)))
+          '("english" "german")))))

@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{etex}
 \RequirePackage{expl3}
-\ProvidesExplClass{phst-doc}{2011/09/18}{0.1a}{Documentation class for Philipp Stephani's packages}
+\ProvidesExplClass{phst-doc}{2012/12/30}{0.2}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}[2012/08/29]
 \RequirePackage{etoolbox}
@@ -20,6 +20,8 @@
 }
 
 \RequirePackage{xspace}
+\RequirePackage{comment}
+\RequirePackage{babel}
 \RequirePackage[includemp=true, hmargin=20mm, vmargin=35mm, marginparwidth=40mm]{geometry}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
@@ -544,6 +546,28 @@
   \label{#1}
   \endfigure
 }
+
+% multilingual documentation
+\group_begin:%
+\char_set_catcode_other:N\ %
+\tl_const:Nn\c__phstdoc_other_space_tl{ }%
+\group_end:%
+\RenewDocumentCommand \CommentEndDef { m } {
+  \tl_gset:cx { End #1 Test } {
+    \@percentchar
+    \tl_use:N \c__phstdoc_other_space_tl
+    \@backslashchar end
+    \token_to_str:N {
+      #1
+    \token_to_str:N }
+  }
+}
+\cs_new_protected_nopar:Nn \__phstdoc_language:nn {
+  \tl_new:c { #1 }
+  \specialcomment { #1 } { \begin{otherlanguage}{#2} } { \end{otherlanguage} }
+}
+\__phstdoc_language:nn { english } { american }
+\__phstdoc_language:nn { german  } { ngerman  }
 
 \luatex_if_engine:T {
   \setmainfont { Latin~ Modern~ Roman }
