@@ -573,10 +573,10 @@
   \setmainfont { Latin~ Modern~ Roman }
 }
 
-\setcounter{IndexColumns}{2}
-\hypersetup{%
-  colorlinks=true,%
-  linkcolor=blue,%
-  pdfstartview=FitH%
+\setcounter { IndexColumns } { 2 }
+\hypersetup{
+  colorlinks   = true,
+  linkcolor    = blue,
+  pdfstartview = FitH
 }
 \endinput
