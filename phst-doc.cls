@@ -4,6 +4,7 @@
 \ProvidesExplClass{phst-doc}{2012/12/30}{0.2}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}[2012/08/29]
+\RequirePackage{scrbase}
 \RequirePackage{etoolbox}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
@@ -568,6 +569,14 @@
 }
 \__phstdoc_language:nn { english } { american }
 \__phstdoc_language:nn { german  } { ngerman  }
+\newcaptionname { american } { \generalname } { General   }
+\newcaptionname { ngerman  } { \generalname } { Allgemein }
+\renewcaptionname { american } { \glossaryname } { Change~ History    }
+\renewcaptionname { ngerman  } { \glossaryname } { Versionsgeschichte }
+\GlossaryPrologue {
+  \section* { \glossaryname }
+  \markboth { \glossaryname } { \glossaryname }
+}
 
 \luatex_if_engine:T {
   \setmainfont { Latin~ Modern~ Roman }

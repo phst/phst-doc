@@ -15,7 +15,7 @@
  (function
   (lambda ()
     (TeX-run-style-hooks
-     "etex" "expl3" "ltxdoc" "xparse" "etoolbox"
+     "etex" "expl3" "ltxdoc" "xparse" "scrbase" "etoolbox"
      "amsmath" "amsfonts" "mathtools"
      "fontspec"
      "lmodern" "textcomp" "fontenc" "inputenc"
