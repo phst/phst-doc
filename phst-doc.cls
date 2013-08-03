@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{etex}
 \RequirePackage{expl3}
-\ProvidesExplClass{phst-doc}{2012/12/30}{0.2}{Documentation class for Philipp Stephani's packages}
+\ProvidesExplClass{phst-doc}{2013/08/04}{0.3}{Documentation class for Philipp Stephani's packages}
 \LoadClassWithOptions{ltxdoc}
 \RequirePackage{xparse}[2012/08/29]
 \RequirePackage{scrbase}
@@ -498,12 +498,17 @@
     \fontseries\lcdefault
     \selectfont
   }
-  \ExplSyntaxNamesOn
+  \phstdoc_expl_syntax_names_on:
 }
 
 \RenewDocumentCommand \MakePrivateLetters { } {
   \makeatletter
-  \ExplSyntaxNamesOn
+  \phstdoc_expl_syntax_names_on:
+}
+
+\cs_new_protected_nopar:Nn \phstdoc_expl_syntax_names_on: {
+  \char_set_catcode_letter:N :
+  \char_set_catcode_letter:N _
 }
 
 % special tables
